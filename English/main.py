@@ -52,7 +52,7 @@ def main():
             elif choice == 6:
                 encoder_decoder.run_program6()
             elif choice == 0:
-                print("Exiting...")
+                print("\nExiting...")
                 sleep(2)
                 sys.exit()
 
