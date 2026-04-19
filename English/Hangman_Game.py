@@ -1,219 +1,191 @@
-# HANGMAN HAME
 def run_program2():
 
     import os
-    import time
+    from time import sleep
 
     
-    #CLEAR
+    # Clear the console
 
     def clear():
-        if os.name == "nt":
-            os.system("cls")
-        else:
-            os.system("clear")
+        os.system('cls' if os.name == 'nt' else 'clear')
 
+
+    # Dialog box with a more fluid display
 
     def write(sentence):
         for char in sentence:
             print(char, end='', flush=True)
-            time.sleep(0.01)
+            sleep(0.01)
 
 
-    # Default Settings
+    wrong_guesses = 0
 
-    right_guess = 0
-    fault = 0
-    word = " "
-    clear()
-    time.sleep(0.5)
+    # Check the number of wrong guesses
 
-
-    # Check Faults
-
-    def hangman_check():
-        if fault == 0:
+    def hangman():
+        clear()
+        if wrong_guesses == 0:
             print("   |‾‾‾‾‾‾‾‾")
             print("   |        ")
             print("   |        ")
             print("   |        ")
             print("   |        ")
             print(" ------")
-        if fault == 1:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 1:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |         ")
             print("   |         ")
             print("   |         ")
             print("   |         ")
             print(" ------")
-        if fault == 2:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 2:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |        O")
             print("   |         ")
             print("   |         ")
             print("   |         ")
             print(" ------")
-        if fault == 3:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 3:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |        O")
             print("   |        |")
             print("   |         ")
             print("   |         ")
             print(" ------")
-        if fault == 4:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 4:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |        O")
             print("   |       /|")
             print("   |         ")
             print("   |         ")
             print(" ------")
-        if fault == 5:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 5:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |        O")
             print("   |       /|\\")
             print("   |         ")
             print("   |         ")
             print(" ------")
-        if fault == 6:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 6:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |        O")
             print("   |       /|\\")
             print("   |       / ")
             print("   |         ")
             print(" ------")
-        if fault == 7:
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
+        elif wrong_guesses == 7:
             print("   |‾‾‾‾‾‾‾‾|")
             print("   |        O")
             print("   |       /|\\")
             print("   |       / \\")
             print("   |         ")
             print(" ------")
-
-
-    # Tutorial and Rules
-
-    def tutorial():
-        clear()
-        write("Welcome to the hangman Game.")
-        time.sleep(2)
-        write("\nHere are the rules of the game : ")
-        time.sleep(2)
-        write("\nThis game requires 2 Players. One chooses a word and the other one must guess the word by suggesting letters.")
-        time.sleep(6)
-        write("\nThe player who must guess the word is only allowed 7 faults.")
-        time.sleep(4)
-        write("\nGood luck !")
-        time.sleep(2)
-        clear()
-
-
-    # Tutorial ?
-
-    while True:
-        tuto = int(input("Wanna see the rules and tutorial ?    (YES = 1  |  NO = 2)   "))
-        if tuto == 1:
-           tutorial()
-           break
-        elif tuto == 2:
-            break
-        else:
-            write("Choisi entre 1 et 2 !")
-            time.sleep(1)
-            clear()
+            print("\n\nWrong guesses: {}".format(wrong_guesses))
 
 
     # Victory
 
-    def win():
-        clear()
-        time.sleep(0.5)
-        hangman_check()
-        write("You won !")
-        time.sleep(1)
-        write("\nYou guessed the word '{}'".format(word))
-        time.sleep(4)
-        input("\nPress Enter to continue...")
+    def victory():
+        hangman()
+        write("\n\nYou won!")
+        sleep(1)
+        write("\n\nYou guessed the word '{}'.".format(word))
+        sleep(1)
+        input("\n\nPress Enter to go back to the main menu...")
         return
 
 
     # Defeat
 
     def defeat():
-        clear()
-        time.sleep(0.5)
-        hangman_check()
-        time.sleep(1.5)
-        write("You lost.")
-        time.sleep(1)
-        write("\nThe word was '{}' .".format(word))
-        time.sleep(4)
-        input("\nPress Enter to continue...")
+        hangman()
+        write("\n\nYou lost!")
+        sleep(1)
+        write("\n\nThe word was '{}'.".format(word))
+        sleep(1)
+        input("\n\nPress Enter to go back to the main menu...")
         return
         
 
-    # Word Choice
+    # Word selection by player 1
 
-    clear()
     while True:
-        word = input("Player 1 chooses a word :  ")
-        time.sleep(0.1)
+        clear()
+        word = input("Player 1 chooses a word: ")
         if word.isalpha():
             clear()
-            write("You word is valid.")
-            time.sleep(2)
-            clear()
-            time.sleep(1)
+            write("The word is valid.")
+            sleep(1)
             break
         else:
-            write("You can't type digits, only letters !")
-            time.sleep(1.5)
-            clear()
-            time.sleep(1)
+            write("You cannot use numbers, only letters!")
+            sleep(1.5)
 
 
-    # Game Start
-
+    # Game setup
     word = word.lower()
     word_set = set(word)
+    guessed_letters = set()
     hidden_word = ["_"] * len(word)
-    hangman_check()
-    time.sleep(2)
+    hangman()
+    sleep(2)
     clear()
 
 
-    # Game :
+    # Game loop:
 
-    # Proposition Letter
+    # The player proposes letters until they either guess the word or make 7 wrong guesses
 
-    while fault != 7:
+    while wrong_guesses < 7:
+        clear()
         write(" ".join(hidden_word))
-        letter = input("\nSuggest a letter : ").lower()
+        print("\n\nGuessed letters:", ", ".join(sorted(guessed_letters)))
+        letter = input("\n\nGuess a letter: ").lower()
+
+        if len(letter) != 1 or not letter.isalpha():
+            write("\nPlease enter a single letter.")
+            sleep(1)
+            continue
+
+        if letter in guessed_letters:
+            write("\nYou already guessed that letter.")
+            sleep(1)
+            continue
+
+        guessed_letters.add(letter)
 
         if letter in word_set:
 
-    # Letter is in the word
+    # The letter is in the word
 
             write("\nThe letter '{}' is in the word.".format(letter))
+            sleep(1.5)
             for i, char in enumerate(word):
                 if char == letter:
                     hidden_word[i] = letter
-                    right_guess += 1
-                    time.sleep(2)
-            if right_guess == len(word_set):
-                win()
+            hangman()
+            sleep(1.5)
+            if "_" not in hidden_word:
+                victory()
                 break
             
-            clear()
 
-    # Letter is NOT in the word
+    # The letter is not in the word
 
         else:
-            fault += 1
+            wrong_guesses += 1
             write("\nThe letter '{}' is not in the word.".format(letter))
-            time.sleep(2)
-            clear()
-            hangman_check()
-            time.sleep(2)
-            clear()
-            if fault == 7:
+            sleep(1.5)
+            hangman()
+            sleep(1.5)
+            if wrong_guesses == 7:
                 defeat()
+
+        
