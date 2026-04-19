@@ -1,12 +1,14 @@
 def run_program3():
 
-    import random
+    import secrets
     import os
     from time import sleep
 
 
     def clear():
         os.system('cls' if os.name == 'nt' else 'clear')
+
+
     # List of all the characters
 
     characters = [
@@ -16,43 +18,39 @@ def run_program3():
                   "@", "_", "-", "*", "!", "?"
                   ]
 
-    password = []
-
     # The function will choose a random charcter in the list above and add it to the password variable
 
-    def generate(lenght):
-        for i in range(lenght):
-            password.extend(random.choice(characters))
-        print ("".join(str(i) for i in password))
+    def generate(length):
+        password = []
+        for _ in range(length):
+            password.append(secrets.choice(characters))
+        return "".join(password)
 
-
-    clear()
 
     # Handling every error possible
 
     while True:
+        clear()
         try:
-            lenght = int(input("Lenght of the password : "))
+            length = int(input("Length of the password : "))
         except ValueError:
             print("\nPlease enter a valid number.")
-            sleep(2)
-            clear()
+            sleep(1.5)
         else:
-            if lenght <= 0:
+            if length <= 0:
                 print("\nPlease choose a higher number.")
-                sleep(2)
-                clear()
-            elif lenght > 30:
+                sleep(1.5)
+            elif length > 30:
                 print("\nPlease choose a lower number.")
-                sleep(2)
-                clear()
+                sleep(1.5)
             else:
+                print("\nGenerating password...")
+                sleep(3)
                 break
 
 
-    sleep(0.5)
-    print("")
-    generate(lenght)
-    sleep(1)
+    password = generate(length)
+    print(f"\nYour password is: {password}")
     print("\nYou can copy it now.")
-    input("\nPress enter to continue...")
+    sleep(1)
+    input("\n\nPress enter to continue...")
