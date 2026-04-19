@@ -141,7 +141,7 @@ def run_program2():
 
     # Game loop:
 
-    # The player proposes letters until they either guess the word or make 7 wrong guesses
+    # The player suggests letters until they either guess the word or make 7 wrong guesses
 
     while wrong_guesses < 7:
         clear()
