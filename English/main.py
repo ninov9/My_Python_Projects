@@ -39,18 +39,18 @@ def main():
             if choice == 1:
                 Guess_the_number.run_program1()
             elif choice == 2:
-                Hangman_Game.run_program2()
+                Hangman.run_program2()
             elif choice == 3:
-                random_password.run_program3()
+                Random_Password.run_program3()
             elif choice == 4:
-                rock_paper_scissors.run_program4()
+                Rock_Paper_Scissors.run_program4()
             elif choice == 5:
                 try:
                     To_Do_List.run_program5()
                 except ExitToMainException:
                     continue
             elif choice == 6:
-                encoder_decoder.run_program6()
+                Encoder_Decoder.run_program6()
             elif choice == 0:
                 print("\nExiting...")
                 sleep(2)
