@@ -20,135 +20,101 @@ def run_program4():
     clear()
     
     write("Welcome to Rock, Paper, Scissors !")
-    sleep(2)
+    sleep(0.5)
     while True:
         try:
             num_rounds = int(input("\n\nNumber of rounds : "))
         except ValueError:
-            write("\nPlease enter a valid digit !")
-            sleep(2)
-            clear()
+            write("\nPlease enter a valid integer !")
+            sleep(1.5)
         else:
             if num_rounds < 1:
-                write("\nPlease enter a number greater than 0 !")
-                sleep(2)
-                clear()
+                write("\nPlease enter a number greater than 0.")
+                sleep(1.5)
             elif num_rounds > 20:
-                write("\nPlease enter a number lower than 20 !")
-                sleep(2)
-                clear()
+                write("\nPlease enter a number lower than 20.")
+                sleep(1.5)
             else:
                 break
+        clear()
             
     clear()
-    sleep(1)
     
     # Starting game
     
-    for i in range(num_rounds):
-        result = None
-        player_choice = None
-        bot_choice = None
-    
+    choices = ["Rock", "Paper", "Scissors"]
+
+    for _ in range(num_rounds):
+
     # Bot
-    
+
         bot = random.randint(1, 3)
-        if bot == 1:
-            bot_choice = "Rock"
-        elif bot == 2:
-            bot_choice = "Paper"
-        elif bot == 3:
-            bot_choice = "Scissors"
+        bot_choice = choices[bot - 1]
     
     # Player
     
         while True:
-            write(str("Rock = 1   Paper = 2  Scissors = 3"))
-            sleep(1)
+            write("Rock = 1 | Paper = 2 | Scissors = 3")
         
             try:
                 player = int(input("\n\nChoice : "))
                 if player in (1, 2, 3):
+                    player_choice = choices[player - 1]
                     break
                 else:
                     write("\nChoose a number between 1, 2, 3 !")
                     sleep(1.5)
-                    clear()
             except ValueError:
                 write("\nChoose a digit !")
                 sleep(1.5)
-                clear()
+            clear()
+
     
-        if player == 1:
-            player_choice = "Rock"
-        elif player == 2:
-            player_choice = "Paper"
-        elif player == 3:
-            player_choice = "Scissors"
-        sleep(1)
-        write("")
-    
-    # Tie
-    
-        if player == 1 and bot == 1:
-            result = "\n\nTie"
-        elif player == 2 and bot == 2:
-            result = "\n\nTie"
-        elif player == 3 and bot == 3:
-            result = "\n\nTie"
-    
-    # Bot won
-    
-        elif bot == 1 and player == 3:
-            result = "\n\nThe bot won the round."
-        elif bot == 2 and player == 1:
-            result = "\n\nThe bot won the round."
-        elif bot == 3 and player == 2:
-            result = "\n\nThe bot won the round."
-        
-    # Player won   
-    
-        elif player == 1 and bot == 3:
-            result = "\n\nYou won the round."
-        elif player == 2 and bot == 1:
-            result = "\n\nYou won the round."
-        elif player == 3 and bot == 2:
-            result = "\n\nYou won the round."
-        
-    # Changing score
-    
-        if result == "\n\nYou won the round.":
-            player_score += 1
-        elif result == "\n\nThe bot won the round.":
-            bot_score += 1
+    # Determining the winner of the round
+
+        if player == bot:
+            result = "tie"
+        elif (player - bot) % 3 == 1:
+            result = "player"
         else:
-            pass
+            result = "bot"
+
+    # Updating the score and preparing the message to display
+
+        if result == "player":
+            player_score += 1
+            message = "\n\nYou won the round."
+        elif result == "bot":
+            bot_score += 1
+            message = "\n\nThe bot won the round."
+        else:
+            message = "\n\nTie"
         
         
     # End of the round
     
-        score = "\n\n" + str(player_score) + "  -  " + str(bot_score)
-        write("\nThe bot chose : '{}' and you chose : '{}' ".format(bot_choice, player_choice))
-        write("")
-        sleep(2)
-        write(result)
-        sleep(2)
+        score = f"\n\nScore: {player_score} - {bot_score}"
+        write(f"\nBot: {bot_choice} | You: {player_choice}")
+        sleep(0.5)
+        write(message)
+        sleep(0.5)
         write(score)
-        sleep(2.5)
+        sleep(0.5)
+        input("\n\nPress Enter to proceed...")
         clear()
         
     
     # End of the game
     
-    sleep(1)
-    write("Final Score: {} - {}".format(player_score, bot_score))
-    sleep(1)
+    write(f"Final Score: {player_score} - {bot_score}")
+    sleep(0.5)
     if bot_score > player_score:
-        write("\nThe bot won !")
+        write("\n\nThe bot won !")
     elif bot_score < player_score:
-        write("\nYou won !")
+        write("\n\nYou won !")
     else:
-        write("\nIt's a tie ! Nobody won.")
-    sleep(3)
-    print("\nPress Enter to continue...")
+        write("\n\nIt's a tie ! Nobody won.")
+    sleep(1)
+
+    input("\n\nPress Enter to go back to the main menu...")
     
