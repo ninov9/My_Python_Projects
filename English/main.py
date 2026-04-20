@@ -3,11 +3,11 @@ import sys
 from time import sleep
 # Import the programs
 import Guess_the_number
-import Hangman_Game
-import random_password
-import rock_paper_scissors
+import Hangman
+import Random_Password
+import Rock_Paper_Scissors
 import To_Do_List
-import encoder_decoder
+import Encoder_Decoder
 from To_Do_List import ExitToMainException
 
 
