@@ -1,25 +1,34 @@
 # My_Python_Projects
 
-Hi there ! My name is Nino and I'm a little programer.  
+Hi there ! My name is Nino, and I'm a proficient programer.  
 Here you can find some of the programs I made on my own and for now I only create [Python](https://www.python.org/) programs.  
-I know that they're not perfect so you might encounter a few errors.  
+I spent days to build them but I know they can still be improved. Nonetheless, I did my best and I really had a good time on the long term.  
+
+## Features
+
+Here is the full list of my programs :
+
+1. Guess The Number
+2. Hangman Game
+3. Random Password
+4. Rock Paper Scissors
+5. To-Do List
+6. Encoder / Decoder
 
 ## Installation   
 
-1. Open a terminal   
+### Clone the repository
 
-2. Type these commands :   
+`git clone https://github.com/ninovilletet/My_Python_Projects.git`
 
-`git clone https://github.com/ninovilletet/My_Python_Projects.git`    
-
-`cd My_Python_Projects`    
+`cd My_Python_Projects`
 
 
-For Linux / Termux / macOS :  
+### For Linux / Termux / macOS :  
 
 `python3 main.py`    
 
-For Windows :  
+### For Windows :  
 
 `python main.py`  
 
