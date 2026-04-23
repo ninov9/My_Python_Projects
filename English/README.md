@@ -1,34 +1,35 @@
 # My_Python_Projects
+A collection of beginner-to-intermediate Python projects built for learning and practice.
 
-Hi there ! My name is Nino, and I'm a proficient programer.  
+Hi there ! My name is Nino, and I'm a beginner programmer.  
 Here you can find some of the programs I made on my own and for now I only create [Python](https://www.python.org/) programs.  
-I spent days to build them but I know they can still be improved. Nonetheless, I did my best and I really had a good time on the long term.  
+I spent several days building them, and I know they can still be improved. Still, I did my best and really enjoyed working on them.
 
 ## Features
 
 Here is the full list of my programs :
 
-1. Guess The Number
-2. Hangman Game
-3. Random Password
-4. Rock Paper Scissors
-5. To-Do List
-6. Encoder / Decoder
+- Guess The Number
+- Hangman Game
+- Random Password
+- Rock Paper Scissors
+- To-Do List
+- Encoder / Decoder
 
 ## Installation   
 
 ### Clone the repository
 
-`git clone https://github.com/ninovilletet/My_Python_Projects.git`
+`git clone https://github.com/ninov9/My_Python_Projects.git`
 
 `cd My_Python_Projects`
 
 
-### For Linux / Termux / macOS :  
+### Linux / Termux / macOS :  
 
 `python3 main.py`    
 
-### For Windows :  
+### Windows :  
 
 `python main.py`  
 
