@@ -33,6 +33,6 @@ Here is the full list of my programs :
 `python main.py`  
 
 
-3. And then, you can just follow the instructions within the programs.  
+### And then, you can just follow the instructions within the programs.  
 
 I hope you'll like them and if you encounter any issues or have suggestions, please [open an issue](https://github.com/ninovilletet/My_Python_Projects/issues)
