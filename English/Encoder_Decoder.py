@@ -28,22 +28,28 @@ def run_program6():
                  "5", "6", "7", "8", "9"
                  ]
     
-    encoded_message = []
-    decoded_message = []
-    global choice
-    choice = None
-    
+    char_to_index = {char: i for i, char in enumerate(char_list)}
     
     # Clear the console screen
     def clear():
         os.system('cls' if os.name == 'nt' else 'clear')
     
     
-    # Make a little animation for the user
-    def animation():
-        global choice
-        if choice == 1:
+    # Wait for the user to press Enter
+    def wait_for_enter():
+        try:
+            input("\nPress Enter to continue...")
+        except KeyboardInterrupt:
+            print("\nExiting...")
+            sleep(1)
+            return
         
+
+    # Make a little animation for the user
+    def animation(direction):
+        clear()
+
+        if direction == 1:
             for i in range(5):
                 print("Encoding")
                 sleep(0.3)
@@ -57,11 +63,9 @@ def run_program6():
                 print("Encoding...")
                 sleep(0.3)
                 clear()
-            print("Encoding completed.")
-            sleep(2)
-            clear()
-        elif choice == 2:
-        
+            print("Encoding completed.\n")
+            
+        else:
             for i in range(5):
                 print("Decoding")
                 sleep(0.3)
@@ -75,97 +79,161 @@ def run_program6():
                 print("Decoding...")
                 sleep(0.3)
                 clear()
-            print("Decoding completed.")
-            sleep(2)
-            clear()
-    
-    
-    # Wait for the user to press Enter
-    def wait_for_enter():
-        try:
-            input("\nPress Enter to continue...")
-        except KeyboardInterrupt:
-            print("\nExiting...")
-            sleep(1)
-            return
-    
-    
-    # The user chooses between encoding or decoding
-    def choose():
-        clear()
-        global choice
-        sleep(0.5)
-        while True:
-            try:
-                choice = int(input("Would you like to ENCODE ( 1 ) or DECODE ( 2 ) or EXIT ( 3 ): "))
-            except ValueError:
-                print("Please enter a number between 1 and 3.")
-                sleep(2)
-                clear()
-            else:
-                if choice == 1:
-                    clear()
-                    encode()
-                    break
-                elif choice == 2:
-                    clear()
-                    decode()
-                    break
-                elif choice == 3:
-                    print("\nExiting...")
-                    sleep(2)
-                    break
-                else:
-                    print("Please enter a number between 1 and 3.")
-                    sleep(2)
-                    clear()
-    
-    
-    # Encode the message
-    def encode():
-        global encoded_message
-        encoded_message = []
-        sleep(1)
-        message = input("Enter the message to encode : ")
-        sleep(0.1)
-        clear()
-        for char in message:
-            current_index = char_list.index(char)
-            new_index = current_index + 5
-            new_char = char_list[new_index]
-            encoded_message.append(new_char)
+            print("Decoding completed.\n")
         
-        sleep(0.1)
-        clear()
-        animation()
-        print(f"The encoded message is :", "".join(encoded_message))
-        sleep(1)
-        wait_for_enter()
-        choose()
+        sleep(1.5)
+
     
-    
-    # Decode the encoded message
-    def decode():
-        global decoded_message
-        decoded_message = []
-        sleep(1)
-        message = input("Enter the message to decode : ")
-        sleep(0.1)
+    # Uses a fixed shift to encode the message
+    def value_shift(direction, mode_text, result_text):
         clear()
+        new_message = []
+        try:
+            shift = int(input("Enter the shift value: "))
+        except ValueError:
+            print("Please enter a valid integer for the shift value.")
+            wait_for_enter()
+            return
+        shift = shift % len(char_list)
+        
+        message = input(f"\nEnter the message to {mode_text} : ")
+        if not message:
+            print("Message cannot be empty.")
+            wait_for_enter()
+            return
+
         for char in message:
-            current_index = char_list.index(char)
-            new_index = current_index - 5
-            new_char = char_list[new_index]
-            decoded_message.append(new_char)
-    
-        sleep(0.1)
-        clear()
-        animation()
-        print(f"The decoded message is :", "".join(decoded_message))
-        sleep(4)
+            if char in char_to_index:
+                current_index = char_to_index[char]
+
+                if direction == 1:
+                    new_index = (current_index + shift) % len(char_list)
+                else:
+                    new_index = (current_index - shift) % len(char_list)
+
+                new_message.append(char_list[new_index])
+            else:
+                new_message.append(char)
+
+        animation(direction)
+        print(f"The {result_text} message is:", "".join(new_message))
         wait_for_enter()
-        choose()
+
+
+    # Uses a key-based system to encode the message
+    def key_shift(direction, mode_text, result_text):
+        clear()
+        new_message = []
+        key = input("Enter the key: ")
+        if not key:
+            print("Key cannot be empty.")
+            wait_for_enter()
+            return
+        
+        key_shifts = []
+        for k in key:
+            if k in char_to_index:
+                key_shifts.append(char_to_index[k])
+            else:
+                key_shifts.append(0)
+
+        if all(shift == 0 for shift in key_shifts):
+            print("Key must contain at least one valid character.")
+            wait_for_enter()
+            return
+
+        message = input(f"\nEnter the message to {mode_text} : ")
+        if not message:
+            print("Message cannot be empty.")
+            wait_for_enter()
+            return
+
+        key_index = 0
+
+        for char in message:
+            if char in char_to_index:
+                current_index = char_to_index[char]
+
+                shift = key_shifts[key_index % len(key_shifts)]
+                if direction == 1:
+                    new_index = (current_index + shift) % len(char_list)
+                else:
+                    new_index = (current_index - shift) % len(char_list)
+
+                new_message.append(char_list[new_index])
+                key_index += 1
+            else:
+                new_message.append(char)
+
+        animation(direction)
+        print(f"The {result_text} message is:", "".join(new_message))
+        wait_for_enter()
     
+
+    # Uses a reverse system to encode the message
+    def reverse(direction, mode_text, result_text):
+        clear()
+        message = input(f"Enter the message to {mode_text}: ")
+        if not message:
+            print("Message cannot be empty.")
+            wait_for_enter()
+            return
+        new_message = message[::-1]
+
+        animation(direction)
+        print(f"The {result_text} message is:", new_message)
+        wait_for_enter()
+
     
-    choose()
-    
+    systems = {
+    1: value_shift,
+    2: key_shift,
+    3: reverse
+    }
+
+    # Let the user choose which system they want to use
+    def choose_system(direction):
+        while True:
+            clear()
+            print("Choose the system you want to use :")
+            print("1. Value shift (Caesar Cipher, simple and easy to use)")
+            print("2. Key-based (Vigenère Cipher, more secure but requires a key)")
+            print("3. Reverse (Reverse Cipher, very simple but not very secure)")
+            print("4. Back to main menu")
+            try:
+                system_choice = int(input("\nEnter your choice: "))
+            except ValueError:
+                print("Please enter a number between 1 and 4.")
+                sleep(1.5)
+                continue
+
+            mode_text = "encode" if direction == 1 else "decode"
+            result_text = "encoded" if direction == 1 else "decoded"
+
+            if system_choice in systems:
+                systems[system_choice](direction, mode_text, result_text)
+            elif system_choice == 4:
+                break
+            else:
+                print("Please enter a number between 1 and 4.")
+                sleep(1.5)
+
+    while True:
+        clear()
+        try:
+            direction = int(input("Would you like to ENCODE ( 1 ) or DECODE ( 2 ) or EXIT ( 3 ): "))
+        except ValueError:
+            print("Please enter a number between 1 and 3.")
+            sleep(1.5)
+            continue
+
+        if 0 < direction < 3:
+            choose_system(direction)
+        elif direction == 3:
+            print("\nExiting...")
+            sleep(2)
+            input("Press Enter to go back to the main menu...")
+            break
+        else:
+            print("Please enter a number between 1 and 3.")
+            sleep(1.5)
