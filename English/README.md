@@ -22,7 +22,7 @@ Here is the full list of my programs :
 
 `git clone https://github.com/ninov9/My_Python_Projects.git`
 
-`cd My_Python_Projects`
+`cd My_Python_Projects/English`
 
 
 ### Linux / Termux / macOS :  
