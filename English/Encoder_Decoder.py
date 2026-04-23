@@ -212,6 +212,7 @@ def run_program6():
 
             if system_choice in systems:
                 systems[system_choice](direction, mode_text, result_text)
+                break
             elif system_choice == 4:
                 break
             else:
