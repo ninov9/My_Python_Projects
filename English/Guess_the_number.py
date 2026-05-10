@@ -1,4 +1,11 @@
+"""
+A simple number guessing game where you try to guess a randomly chosen number between 1 and 10.
+"""
+
 def run_program1():
+    """
+    Runs the guessing game.
+    """
 
     import random
     from time import sleep
@@ -6,12 +13,18 @@ def run_program1():
 
 
     def clear():
+        """
+        Clears the console screen.
+        """
         os.system('cls' if os.name == 'nt' else 'clear')
 
 
     clear()
 
     def play_game():
+        """
+        Plays the number guessing game.
+        """
         num = random.randint(1, 10)
         print ("A number between 1 and 10 has been chosen.")
         sleep(2)
@@ -24,7 +37,8 @@ def run_program1():
                 sleep(2)
                 clear()
             else:
-                if 1 < guess > 10:
+                # Check if guess is out of range
+                if guess < 1 or guess > 10:
                     print("Please choose a number between 1 and 10 !")
                     sleep(2)
                     clear()

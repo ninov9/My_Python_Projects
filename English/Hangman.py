@@ -1,18 +1,27 @@
+"""
+A classic Hangman game where players guess letters to reveal a hidden word.
+"""
+
 def run_program2():
+    """
+    Runs the Hangman game.
+    """
 
     import os
     from time import sleep
 
     
-    # Clear the console
-
     def clear():
+        """
+        Clears the console screen.
+        """
         os.system('cls' if os.name == 'nt' else 'clear')
 
 
-    # Dialog box with a more fluid display
-
     def write(sentence):
+        """
+        Displays text with a typing effect.
+        """
         for char in sentence:
             print(char, end='', flush=True)
             sleep(0.01)
@@ -20,9 +29,10 @@ def run_program2():
 
     wrong_guesses = 0
 
-    # Check the number of wrong guesses
-
     def hangman():
+        """
+        Draws the hangman figure based on wrong guesses.
+        """
         clear()
         if wrong_guesses == 0:
             print("   |‾‾‾‾‾‾‾‾")
@@ -90,9 +100,10 @@ def run_program2():
             print("\n\nWrong guesses: {}".format(wrong_guesses))
 
 
-    # Victory
-
     def victory():
+        """
+        Handles the victory scenario.
+        """
         hangman()
         write("\n\nYou won!")
         sleep(1)
@@ -102,9 +113,10 @@ def run_program2():
         return
 
 
-    # Defeat
-
     def defeat():
+        """
+        Handles the defeat scenario.
+        """
         hangman()
         write("\n\nYou lost!")
         sleep(1)
@@ -187,5 +199,3 @@ def run_program2():
             sleep(1.5)
             if wrong_guesses == 7:
                 defeat()
-
-        

@@ -1,4 +1,11 @@
+"""
+A secure random password generator that creates passwords of user-specified lengths using a variety of characters.
+"""
+
 def run_program3():
+    """
+    Runs the password generator.
+    """
 
     import secrets
     import os
@@ -6,11 +13,13 @@ def run_program3():
 
 
     def clear():
+        """
+        Clears the console screen.
+        """
         os.system('cls' if os.name == 'nt' else 'clear')
 
 
-    # List of all the characters
-
+    # List of characters for password generation
     characters = [
                   "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
                   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -18,17 +27,17 @@ def run_program3():
                   "@", "_", "-", "*", "!", "?"
                   ]
 
-    # The function will choose a random charcter in the list above and add it to the password variable
-
     def generate(length):
+        """
+        Generates a random password of the given length.
+        """
         password = []
         for _ in range(length):
             password.append(secrets.choice(characters))
         return "".join(password)
 
 
-    # Handling every error possible
-
+    # Handling user input for password length
     while True:
         clear()
         try:

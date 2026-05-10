@@ -1,3 +1,7 @@
+"""
+A simple to-do list application that allows users to add, remove, edit, and manage tasks, with data saved to a JSON file.
+"""
+
 # TO-DO LIST
 
 class ExitToMainException(Exception):
@@ -5,6 +9,9 @@ class ExitToMainException(Exception):
 
 
 def run_program5():
+    """
+    Runs the to-do list application.
+    """
 
     import os
     from time import sleep
@@ -13,17 +20,26 @@ def run_program5():
     
 
     def write(sentence):
+        """
+        Displays text with a typing effect.
+        """
         for char in sentence:
             print(char, end='', flush=True)
             sleep(0.01)
 
             
     def write_red(sentence):
+        """
+        Displays text in red.
+        """
         write(Fore.RED + sentence + Fore.RESET)
 
 
-# USE THE PREVIOUS DATAS SAVED IN A JSON FILE
+# list_tasks.json stores the to-do list tasks as a JSON array
     def load_tasks():
+        """
+        Loads tasks from the JSON file.
+        """
         try:
             with open("list_tasks.json", "r") as file:
                 return json.load(file)
@@ -40,22 +56,32 @@ def run_program5():
     
     list_tasks = load_tasks()
     
-    # EVERY ACTIONS
-    
     def save_tasks():
+        """
+        Saves tasks to the JSON file.
+        """
         with open("list_tasks.json", "w") as file:
             json.dump(list_tasks, file)
 
     
     def clear():
+        """
+        Clears the console screen.
+        """
         os.system('cls' if os.name == 'nt' else 'clear')
     
     
     def write_green(sentence):
+        """
+        Displays text in green.
+        """
         write(Fore.LIGHTGREEN_EX + sentence + Fore.RESET) 
 
     
     def display_list():
+        """
+        Displays the current list of tasks.
+        """
         if not list_tasks:
             write_green("Your TO-DO List is empty.")
         else:
@@ -65,6 +91,9 @@ def run_program5():
 
 
     def empty():
+        """
+        Clears all tasks from the list.
+        """
         list_tasks.clear()
         write_green("\nThe list has been emptied successfully !\n")
         input(Fore.CYAN + "\n\nPress Enter to continue..." + Fore.RESET)
@@ -72,6 +101,9 @@ def run_program5():
     
     
     def add_task():
+        """
+        Adds a new task to the list.
+        """
         task_name = input(Fore.CYAN + "\n\nEnter the name of the task you want to add: " + Fore.RESET)
         list_tasks.append(task_name)
         write_green(f"\nTask '{task_name}' added successfully !\n")
@@ -79,7 +111,10 @@ def run_program5():
         save_tasks()
     
     
-    def remove_task():  
+    def remove_task():
+        """
+        Removes a task from the list.
+        """
         while True:
             try:
                 index_task = int(input(Fore.CYAN + "\n\nNumber of the task you want to remove: " + Fore.RESET))
@@ -99,6 +134,9 @@ def run_program5():
     
     
     def edit_task():
+        """
+        Edits an existing task.
+        """
         while True:
             try:
                 index_task = int(input(Fore.CYAN + "\n\nNumber of the task you want to edit: " + Fore.RESET))
@@ -120,6 +158,9 @@ def run_program5():
     
     
     def help():
+        """
+        Displays the help menu.
+        """
         clear()
         write_green("Here are all the available options : ")
         write_green("\n\n0 = HELP\n1 = ADD TASK\n2 = REMOVE TASK\n3 = EDIT TASK\n4 = EMPTY LIST\n5 = EXIT PROGRAM")
@@ -127,6 +168,9 @@ def run_program5():
     
     
     def exit_program():
+        """
+        Exits the program.
+        """
         clear()
         write_green("Exiting...")
         sleep(1.5)

@@ -1,3 +1,7 @@
+"""
+The main menu for a collection of Python games and utilities.
+"""
+
 import os
 import sys
 from time import sleep
@@ -15,10 +19,16 @@ from To_Do_List import ExitToMainException
 
 # Clear the console screen
 def clear():
-        os.system('cls' if os.name == 'nt' else 'clear')
+    """
+    Clears the console screen.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def main():
+    """
+    Runs the main menu loop for selecting programs.
+    """
 
     while True:
         clear()

@@ -1,4 +1,11 @@
+"""
+A tool for encoding and decoding messages using Caesar, Vigenère, and reverse ciphers.
+"""
+
 def run_program6():
+    """
+    Runs the main encoder-decoder menu.
+    """
 
     import os
     from time import sleep
@@ -30,13 +37,17 @@ def run_program6():
     
     char_to_index = {char: i for i, char in enumerate(char_list)}
     
-    # Clear the console screen
     def clear():
+        """
+        Clears the console screen.
+        """
         os.system('cls' if os.name == 'nt' else 'clear')
     
     
-    # Wait for the user to press Enter
     def wait_for_enter():
+        """
+        Waits for the user to press Enter.
+        """
         try:
             input("\nPress Enter to continue...")
         except KeyboardInterrupt:
@@ -45,8 +56,10 @@ def run_program6():
             return
         
 
-    # Make a little animation for the user
     def animation(direction):
+        """
+        Shows a fun encoding/decoding animation.
+        """
         clear()
 
         if direction == 1:
@@ -84,8 +97,10 @@ def run_program6():
         sleep(1.5)
 
     
-    # Uses a fixed shift to encode the message
     def value_shift(direction, mode_text, result_text):
+        """
+        Encodes or decodes using a fixed shift (Caesar cipher).
+        """
         clear()
         new_message = []
         try:
@@ -106,6 +121,7 @@ def run_program6():
             if char in char_to_index:
                 current_index = char_to_index[char]
 
+                # Calculate new index based on direction and shift
                 if direction == 1:
                     new_index = (current_index + shift) % len(char_list)
                 else:
@@ -120,8 +136,10 @@ def run_program6():
         wait_for_enter()
 
 
-    # Uses a key-based system to encode the message
     def key_shift(direction, mode_text, result_text):
+        """
+        Encodes or decodes using a key (Vigenère cipher).
+        """
         clear()
         new_message = []
         key = input("Enter the key: ")
@@ -154,6 +172,7 @@ def run_program6():
             if char in char_to_index:
                 current_index = char_to_index[char]
 
+                # Get shift from key, cycling through key shifts
                 shift = key_shifts[key_index % len(key_shifts)]
                 if direction == 1:
                     new_index = (current_index + shift) % len(char_list)
@@ -170,8 +189,10 @@ def run_program6():
         wait_for_enter()
     
 
-    # Uses a reverse system to encode the message
     def reverse(direction, mode_text, result_text):
+        """
+        Encodes or decodes by reversing the message.
+        """
         clear()
         message = input(f"Enter the message to {mode_text}: ")
         if not message:
@@ -191,8 +212,10 @@ def run_program6():
     3: reverse
     }
 
-    # Let the user choose which system they want to use
     def choose_system(direction):
+        """
+        Lets the user pick a cipher method.
+        """
         while True:
             clear()
             print("Choose the system you want to use :")

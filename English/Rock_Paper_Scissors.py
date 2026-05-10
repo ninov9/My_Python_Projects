@@ -1,4 +1,11 @@
+"""
+A Rock, Paper, Scissors game where you play against a bot for a specified number of rounds.
+"""
+
 def run_program4():
+    """
+    Runs the Rock, Paper, Scissors game.
+    """
 
     import random
     import os
@@ -6,10 +13,16 @@ def run_program4():
     
     
     def clear():
+        """
+        Clears the console screen.
+        """
         os.system('cls' if os.name == 'nt' else 'clear')
     
     
     def write(sentence):
+        """
+        Displays text with a typing effect.
+        """
         for char in sentence:
             print(char, end='', flush=True)
             sleep(0.01)
@@ -46,13 +59,11 @@ def run_program4():
 
     for _ in range(num_rounds):
 
-    # Bot
-
+    # Bot's choice
         bot = random.randint(1, 3)
         bot_choice = choices[bot - 1]
     
-    # Player
-    
+    # Player's choice
         while True:
             write("Rock = 1 | Paper = 2 | Scissors = 3")
         
