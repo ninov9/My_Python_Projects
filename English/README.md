@@ -7,33 +7,44 @@ I spent several days building them, and I know they can still be improved. Still
 
 ## Features
 
-Here is the full list of my programs :
+Here is the full list of my programs with brief descriptions:
 
-- Guess The Number
-- Hangman Game
-- Random Password
-- Rock Paper Scissors
-- To-Do List
-- Encoder / Decoder
+- **Guess The Number**: A fun number guessing game where you try to guess a randomly generated number
+- **Hangman Game**: Classic word-guessing game with ASCII art and multiple difficulty levels
+- **Random Password**: Secure password generator using Python's secrets module
+- **Rock Paper Scissors**: Multi-round game against the computer with score tracking
+- **To-Do List**: Task management application with JSON file persistence
+- **Encoder / Decoder**: Text encryption/decryption tool supporting Caesar, Vigenère, and reverse ciphers
 
 ## Installation   
 
 ### Clone the repository
 
-`git clone https://github.com/ninov9/My_Python_Projects.git`
+```bash
+git clone https://github.com/ninov9/My_Python_Projects.git
+cd My_Python_Projects/English
+```
 
-`cd My_Python_Projects/English`
+### Run the programs
 
+**Linux / Termux / macOS:**
+```bash
+python3 main.py
+```
 
-### Linux / Termux / macOS :  
+**Windows:**
+```bash
+python main.py
+```
 
-`python3 main.py`    
+### Usage
 
-### Windows :  
+After running `main.py`, you'll see a menu with all available programs. Simply choose the number corresponding to the program you want to run, and follow the on-screen instructions.  
 
-`python main.py`  
+## Contributing
 
+Feel free to fork this repository and submit pull requests with improvements! As a beginner project, I'm always looking to learn from the community.
 
-### And then, you can just follow the instructions within the programs.  
+## Feedback
 
-I hope you'll like them and if you encounter any issues or have suggestions, please [open an issue](https://github.com/ninovilletet/My_Python_Projects/issues)
+I hope you'll like them and if you encounter any issues or have suggestions, please [open an issue](https://github.com/ninov9/My_Python_Projects/issues)
